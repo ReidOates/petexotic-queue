@@ -1,0 +1,92 @@
+"""
+APLIKASI PETEXOTIC QUEUE - KLINIK HEWAN EKSOTIS
+Demonstrasi 5 Operasi List:
+1. append()    : Menambah pasien
+2. pop(0)      : Memanggil pasien (FIFO)
+3. insert(0, x): Prioritas darurat
+4. remove()    : Batalkan kunjungan
+5. len()       : Hitung antrian
+"""
+
+# Inisialisasi antrian
+antrian = ["Ular Python", "Sugar Glider, Landak JAWA"]  # Data contoh
+
+def tampilkan_antrian():
+    """Menampilkan antrian dengan nomor urut"""
+    print("\n=== DAFTAR ANTRIAN ===")
+    if not antrian:
+        print("Antrian kosong.")
+    else:
+        for i, hewan in enumerate(antrian, 1):
+            print(f"{i}. {hewan}")
+
+def main():
+    print("Selamat datang di PetExotic Queue!")
+
+    while True:
+        print("\nMENU UTAMA:")
+        print("1. Tambah Pasien Baru (append)")
+        print("2. Panggil Pasien Berikutnya (pop)")
+        print("3. Tambah Pasien Darurat (insert)")
+        print("4. Batalkan Kunjungan (remove)")
+        print("5. Lihat Antrian")
+        print("6. Hitung Jumlah Antrian (len)")
+        print("0. Keluar")
+
+        pilihan = input("Pilih menu (0-6): ")
+
+        # 1. append() - Tambah pasien baru
+        if pilihan == "1":
+            nama = input("Nama hewan: ").strip()
+            if nama:
+                antrian.append(nama)  # <-- Operasi append()
+                print(f"✅ {nama} ditambahkan!")
+            else:
+                print("❌ Nama tidak boleh kosong!")
+
+        # 2. pop(0) - Panggil pasien pertama
+        elif pilihan == "2":
+            if antrian:
+                hewan = antrian.pop(0)  # <-- Operasi pop(0)
+                print(f"📢 Pasien terpanggil: {hewan}")
+            else:
+                print("❌ Antrian kosong!")
+
+        # 3. insert(0, x) - Prioritas darurat
+        elif pilihan == "3":
+            nama = input("Nama hewan darurat: ").strip()
+            if nama:
+                antrian.insert(0, f"🚑 {nama}")  # <-- Operasi insert()
+                print(f"⚠️ Prioritas untuk {nama}!")
+            else:
+                print("❌ Nama tidak boleh kosong!")
+
+        # 4. remove() - Batalkan kunjungan
+        elif pilihan == "4":
+            tampilkan_antrian()
+            if antrian:
+                nama = input("Nama hewan yang batal: ").strip()
+                try:
+                    antrian.remove(nama)  # <-- Operasi remove()
+                    print(f"❌ {nama} dihapus dari antrian.")
+                except ValueError:
+                    print(f"❌ {nama} tidak ditemukan!")
+
+        # 5. Lihat antrian
+        elif pilihan == "5":
+            tampilkan_antrian()
+
+        # 6. len() - Hitung antrian
+        elif pilihan == "6":
+            print(f"\n🔢 Jumlah pasien dalam antrian: {len(antrian)}")  # <-- Operasi len()
+
+        # Keluar
+        elif pilihan == "0":
+            print("Terima kasih! Program dihentikan.")
+            break
+
+        else:
+            print("❌ Pilihan tidak valid!")
+
+if __name__ == "__main__":
+    main()
