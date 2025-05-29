@@ -25,68 +25,70 @@ def main():
 
     while True:
         print("\nMENU UTAMA:")
-        print("1. Tambah Pasien Baru (append)")
-        print("2. Panggil Pasien Berikutnya (pop)")
-        print("3. Tambah Pasien Darurat (insert)")
-        print("4. Batalkan Kunjungan (remove)")
+        print("1. Tambah Pasien Baru") #Menggunakan data list append
+        print("2. Panggil Pasien Berikutnya") #Menggunakan data list pop
+        print("3. Tambah Pasien Darurat ") #Menggunakan data list insert
+        print("4. Batalkan Kunjungan") #Menggunakan data list remove
         print("5. Lihat Antrian")
-        print("6. Hitung Jumlah Antrian (len)")
+        print("6. Hitung Jumlah Antrian") #Menggunakan data list len
         print("0. Keluar")
 
         pilihan = input("Pilih menu (0-6): ")
 
-        # 1. append() - Tambah pasien baru
+        # 1. append() - Tambah pasien baru ke dalam list. Pasien baru akan otomatis berada di urutan terakhir
         if pilihan == "1":
-            nama = input("Nama hewan: ").strip()
+            nama = input("Nama hewan: ").strip() # Meminta input nama pasien dan menghapus spasi di awal/akhir
+
             if nama:
-                antrian.append(nama)  # <-- Operasi append()
-                print(f"✅ {nama} ditambahkan!")
+                antrian.append(nama)  # <-- Operasi append() menambahkan pasien ke akhir list
+                print(f"✅ {nama} ditambahkan!") #Konfirmasi bahwa pasien berhasil di tambahkan ke list
             else:
-                print("❌ Nama tidak boleh kosong!")
+                print("❌ Nama tidak boleh kosong!") #output ketika pesan input kosong
 
         # 2. pop(0) - Panggil pasien pertama
         elif pilihan == "2":
-            if antrian:
-                hewan = antrian.pop(0)  # <-- Operasi pop(0)
-                print(f"📢 Pasien terpanggil: {hewan}")
+            if antrian: #Memeriksa apakah daftar antrian tidak kosong
+                hewan = antrian.pop(0)  # <-- Operasi pop(0) menghapus dan mengambil elemen pertama dari list
+                print(f"📢 Pasien terpanggil: {hewan}") #Menampilkan pasien yang dipanggil
             else:
-                print("❌ Antrian kosong!")
+                print("❌ Antrian kosong!") #Pesan yang muncul ketika tidak ada pasien lagi
+	
 
-        # 3. insert(0, x) - Prioritas darurat
+        # 3. insert(0, x) - Prioritas darurat Menambahkan pasien darurat di posisi pertama
+elif pilihan == "3":
         elif pilihan == "3":
-            nama = input("Nama hewan darurat: ").strip()
-            if nama:
-                antrian.insert(0, f"🚑 {nama}")  # <-- Operasi insert()
-                print(f"⚠️ Prioritas untuk {nama}!")
+            nama = input("Nama hewan darurat: ").strip() # Meminta input nama pasien darurat
+            if nama: # Memeriksa apakah input tidak kosong
+                antrian.insert(0, f"🚑 {nama}")  # <-- Operasi insert() Menambahkan pasien ke posisi pertama dalam list
+                print(f"⚠️ Prioritas untuk {nama}!") # Memberikan konfirmasi bahwa pasien darurat telah ditambahkan
             else:
-                print("❌ Nama tidak boleh kosong!")
+                print("❌ Nama tidak boleh kosong!") #output ketika pesan input kosong
 
-        # 4. remove() - Batalkan kunjungan
+        # 4. remove() - Batalkan kunjungan pasien dari antrian
         elif pilihan == "4":
             tampilkan_antrian()
-            if antrian:
-                nama = input("Nama hewan yang batal: ").strip()
+            if antrian: # Memeriksa apakah daftar antrian tidak kosong
+                nama = input("Nama hewan yang batal: ").strip() # Meminta input nama pasien yang ingin dibatalkan
                 try:
-                    antrian.remove(nama)  # <-- Operasi remove()
-                    print(f"❌ {nama} dihapus dari antrian.")
-                except ValueError:
-                    print(f"❌ {nama} tidak ditemukan!")
+                    antrian.remove(nama)  # <-- Operasi remove() Menghapus pasien berdasarkan nama dari list
+                    print(f"❌ {nama} dihapus dari antrian.") # Menghapus pasien berdasarkan nama dari list
+                except ValueError: # Menangani kasus jika nama tidak ditemukan dalam daftar
+                    print(f"❌ {nama} tidak ditemukan!") # Memberikan pesan kesalahan jika nama tidak ada dalam antrian
 
-        # 5. Lihat antrian
+        # 5. Lihat antiran pasien yang sedang menunggu
         elif pilihan == "5":
-            tampilkan_antrian()
+            tampilkan_antrian() # Memanggil fungsi untuk menampilkan daftar antrian
 
         # 6. len() - Hitung antrian
         elif pilihan == "6":
-            print(f"\n🔢 Jumlah pasien dalam antrian: {len(antrian)}")  # <-- Operasi len()
+            print(f"\n🔢 Jumlah pasien dalam antrian: {len(antrian)}")  # <-- Operasi len() untuk menghitung jumlah elemen dalam list
+        # 0. Keluar dari program
+        elif pilihan == "0":  # Pesan perpisahan sebelum keluar dari program
+            print("Terima kasih! Program dihentikan.")  # Pesan perpisahan sebelum keluar dari program
+            break    # Menghentikan loop utama agar program berhenti
 
-        # Keluar
-        elif pilihan == "0":
-            print("Terima kasih! Program dihentikan.")
-            break
-
-        else:
-            print("❌ Pilihan tidak valid!")
-
+# Penanganan input tidak valid     
+   else:
+            print("❌ Pilihan tidak valid!") # Memberikan pesan kesalahan jika input tidak sesuai dengan opsi yang tersedia
 if __name__ == "__main__":
-    main()
+    main() # Memanggil fungsi utama untuk menjalankan program
